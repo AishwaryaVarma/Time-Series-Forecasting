@@ -21,8 +21,7 @@ During training, we will have to provide a training dataset (made of several tim
 Each training example consists of a pair of adjacent context and prediction windows of fixed, predefined lengths.
 The context_length parameter controls how far in the past the model can see.
 The prediction_length parameter controls how far in the future predictions can be made.
-You can find more details, in this documentation.
-<img src='notebook_ims/context_prediction_windows.png' width=50% />
+
 
 Since DeepAR trains on several time series, it is well suited for data that exhibit recurring patterns.
 
@@ -31,7 +30,6 @@ Energy Consumption Data
 
 The data we'll be working with in this notebook is data about household electric power consumption, over the globe. The dataset is originally taken from Kaggle, and represents power consumption collected over several years from 2006 to 2010. With such a large dataset, we can aim to predict over long periods of time, over days, weeks or months of time. Predicting energy consumption can be a useful task for a variety of reasons including determining seasonal prices for power consumption and efficiently delivering power to people, according to their predicted usage.
 
-Interesting read: An inversely-related project, recently done by Google and DeepMind, uses machine learning to predict the generation of power by wind turbines and efficiently deliver power to the grid. You can read about that research, in this post.
 
 Machine Learning Workflow
 This notebook approaches time series forecasting in a number of steps:
@@ -65,9 +63,7 @@ Each data point has a date and time (hour:minute:second) of recording
 The various data features are separated by semicolons (;)
 Some values are 'nan' or '?', and we'll treat these both as NaN values
 Managing NaN values
-This DataFrame does include some data points that have missing values. So far, we've mainly been dropping these values, but there are other ways to handle NaN values, as well. One technique is to just fill the missing column values with the mean value from that column; this way the added value is likely to be realistic.
 
-I've provided some helper functions in txt_preprocessing.py that will help to load in the original text file as a DataFrame and fill in any NaN values, per column, with the mean feature value. This technique will be fine for long-term forecasting; if I wanted to do an hourly analysis and prediction, I'd consider dropping the NaN values or taking an average over a small, sliding window rather than an entire column of data.
 
 Below, I'm reading the file in as a DataFrame and filling NaN values with feature-level averages.
 
